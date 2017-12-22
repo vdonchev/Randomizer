@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новогодишна томбола 2017. Мебели Ралев</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <style>
+        body, html { font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="card-title text-center" id="output">---</h1>
+        <hr>
+        <p class="text-center">Новогодишна томбола 2017. <strong>Мебели Ралев</strong></p>
+        <hr>
+        <p class="lead text-center">
+            <button class="btn btn-info btn-lg" id="btn-start">Старт</button>
+            <button class="btn btn-primary btn-lg" id="btn-stop">СТОП</button>
+        </p>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    const users = [
+        // списък с всички участници
+        "Иван",
+        "Петър",
+        "Мария"
+    ];
+
+    let animationTimer;
+    let output = $("#output");
+    let stopBtn = $("#btn-stop");
+    let startBtn = $("#btn-start");
+
+    // започни ротация
+    startBtn.on("click", function () {
+        animationTimer = setInterval(function () {
+            const num = Math.floor(Math.random() * users.length);
+            output.text(users[num]);
+        }, 5);
+    });
+
+    // спри ротация при натискане на бутона "стоп"
+    stopBtn.on("click", function () {
+        clearTimeout(animationTimer);
+
+    });
+
+    // спри ротация при натискане на клавиша "spacebar"
+    $('body').on("keyup", function (e) {
+        if (e.keyCode === 32) {
+            clearTimeout(animationTimer);
+        }
+    });
+</script>
+</body>
+</html>
